@@ -64,13 +64,13 @@ class StudentRegistrationController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $response = curl_exec($ch);
         curl_close($ch);
-        return redirect('Login')->with('success', 'Password sent to your phone!');
+        return redirect(route('member_login'))->with('success', 'Password sent to your phone!');
             }else{
-                return redirect('Login')->with('fail', 'Phone number not valid!');
+                return redirect(route('member_login'))->with('fail', 'Phone number not valid!');
             }
         }
         else{
-            return redirect('Login')->with('fail', 'Phone number not valid!');
+            return redirect(route('member_login'))->with('fail', 'Phone number not valid!');
         }
     }
      
@@ -560,21 +560,43 @@ class StudentRegistrationController extends Controller
             return redirect(route('member_login'));
         }
       }
-
+      
       //Br list show
       function br_list()
       {
         $loginginfo = students::where( 'id', '=', session('Userlog'))->first();
-        $all_br = students::all();
+        $all_br = students::orderBy('Batch', 'ASC')->get();
         return view('StudentRegistration.br_list', compact('all_br', 'loginginfo'));
       }
-
+      
       //member list view
       function member_list()
       {
         $loginginfo = students::where( 'id', '=', session('Userlog'))->first();
-        $all_member = students::all();
+        $all_member = students::orderBy('Batch', 'ASC')->get();
         return view('StudentRegistration.member_list', compact('all_member', 'loginginfo'));
       }
+      
+      //Batchmates view
+      function batchmates(){
+        $loginginfo = students::where( 'id', '=', session('Userlog'))->first();
+        $all_batchmates = students::all();
+        return view('StudentRegistration.batchmates', compact('all_batchmates', 'loginginfo'));
+      }
+      
+      //public br list
+      function public_br(){
+          $all_public_br = students::orderBy('Batch', 'ASC')->get();
+          return view('public_br_list', compact('all_public_br'));
+      }
+      
+      
+      
+      //public admin&Moderator list
+      function public_admin(){
+          $all_public_admin = students::orderBy('Batch', 'ASC')->get();
+          return view('public_admin_list', compact('all_public_admin'));
+      }
+
 
 }

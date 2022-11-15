@@ -28,42 +28,63 @@ $date = explode("-", $loggeduserinfo->DoB);
     </style>
     
 </head>
-<div class="row row-xs mg-b-25">
+<!--<div class="row row-xs mg-b-25">-->
+          
+            <div class="row row-xs mg-b-25">
 
-        <div class="package-buttons w-100 pd-l-10 pd-r-10 pd-b-15 pd-t-15 bg-light border-bottom">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                  {{-- <a class="navbar-brand" href="#">Profile</a> --}}
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item active">
-                        <a class="nav-link font-weight-bold" aria-current="page" href="">Profile</a>
-                      </li>
-                      <li class="nav-item active">
-                        <a class="nav-link font-weight-bold" href="{{ route('br_list') }}">BR List</a>
-                      </li>
-                      <li class="nav-item active">
-                        <a class="nav-link font-weight-bold" href="{{ route('member_list') }}">Member List</a>
-                      </li>
-                      <li class="nav-item active">
-                        <a class="nav-link font-weight-bold" href="#">Teacher List</a>
-                      </li>
-                      @if($loggeduserinfo->br_status == 1 || 2)
-                      <li class="nav-item active">
-                        <a class="nav-link font-weight-bold" href="{{ route('br_panel') }}">BR Panel</a>
-                      </li>
-                      @endif
-                    </ul>
-                  </div>
+                <div class="package-buttons w-100 pd-l-10 pd-r-10 pd-b-15 pd-t-15 bg-light border-bottom">
+                    <div class="d-flex w-100 align-items-center">
+            
+                        <div class="container-fluid">
+                            <div class="flex-grow-1">
+                                <!--<div class="w-100 tx-11 font-weight-bold mg-b- mg-t-0 text-primary"><a href="">Profile</a></div>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                
+                                <!--<div><strong>17 February, 2023</strong></div>-->
+                            </div>
+                            <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('user_dashboard') }}">Profile</a>&nbsp;&nbsp;&nbsp;
+                            <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('br_list') }}">BR List</a>&nbsp;&nbsp;&nbsp;
+                            <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('batchmates') }}">Batchmates</a>&nbsp;&nbsp;&nbsp;
+                            <a class="w-100 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('member_list') }}">Member List</a>&nbsp;&nbsp;&nbsp;
+                            @if($loggeduserinfo->br_status != NULL or 0)
+                            <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('br_panel') }}">BR Panel</a>
+                            @endif
+                            <!--<a class="w-100 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="https://reg.ex-students-sghs.org/Registration">Start REGISTRATION</a>-->
+                        </div>
+                    </div>
                 </div>
-              </nav>
-        </div>
+
+        <!--<div class="package-buttons w-100 pd-l-10 pd-r-10 pd-b-15 pd-t-15 bg-light border-bottom">-->
+            
+        <!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+        <!--        <div class="container-fluid">-->
+                  <!--<button class="navbar-toggler" type="button" data-bs-toggle="" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+                    <!--<span class="navbar-toggler-icon"></span>-->
+        <!--          </button>-->
+        <!--            <ul class="navbar-nav  ">-->
+        <!--              <li class="nav-item active">-->
+        <!--                <a class="nav-link font-weight-bold" aria-current="page" href="">Profile</a>-->
+        <!--              </li>-->
+        <!--              <li class="nav-item active">-->
+        <!--                <a class="nav-link font-weight-bold" href="{{ route('br_list') }}">BR List</a>-->
+        <!--              </li>-->
+        <!--              <li class="nav-item active">-->
+        <!--                <a class="nav-link font-weight-bold" href="{{ route('member_list') }}">Member List</a>-->
+        <!--              </li>-->
+        <!--              <li class="nav-item active">-->
+        <!--                <a class="nav-link font-weight-bold" href="#">Teacher List</a>-->
+        <!--              </li>-->
+        <!--              @if($loggeduserinfo->br_status == 1)-->
+        <!--              <li class="nav-item active">-->
+        <!--                <a class="nav-link font-weight-bold" href="{{ route('br_panel') }}">BR Panel</a>-->
+        <!--              </li>-->
+        <!--              @endif-->
+        <!--            </ul>-->
+        <!--        </div>-->
+        <!--      </nav>-->
+        <!--</div>-->
     
     <div class="col-12 offers-list">
-<div class="container rounded bg-white mt-5 mb-5" id="Profile">
+    <div class="container rounded bg-white mt-5 mb-5" id="Profile">
     
     <div class="row">
         <div class="col-md-3 border-right">

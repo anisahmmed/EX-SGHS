@@ -49,12 +49,16 @@ Route::POST('/SearchBy', [StudentRegistrationController::class, 'showSearchList'
 Route::get('success-url','App\Http\Controllers\StudentRegistrationController@verifyPayment');
 Route::POST('/updateStudent', [StudentRegistrationController::class, 'edit']);
 //***
-//Teacher Registration
+//Teacher Registration form view
 Route::get('/teacher-registration', [TeacherController::class, 'create_form'])->name('teacher_form');
+//teacher registration form submit
 Route::post('/confirm-registration', [TeacherController::class, 'teacher_create'])->name('teacher_create');
+
 
 //success page for teacher
 Route::get('/registration-confirmation', [TeacherController::class, 'success_message'])->name('success_message');
+//Teacher public view
+Route::get('/public/teacher/view', [TeacherController::class, 'public_teacher'])->name('public_teacher');
 
 //Admin Dashboard view
 Route::get('/Dashboard', [AdminController::class, 'dashboard_index'])->name('dashboard_index');
@@ -70,10 +74,7 @@ Route::get('/edit-br-status/{id}', [AdminController::class, 'edit_br_status'])->
 Route::post('/br-status-update',[AdminController::class, 'br_status_update'])->name('br_status_update');
 //Edit registered student
 Route::get('/registered-student-edit/{id}', [AdminController::class, 'student_edit'])->name('student_edit');
-//Br List
-Route::get('/Br-List', [StudentRegistrationController::class, 'br_list'])->name('br_list');
-//Member list view
-Route::get('Member-List', [StudentRegistrationController::class, 'member_list'])->name('member_list');
+
 
 
 Route::get('/Member-login', [StudentRegistrationController::class, 'Login'])->name('member_login');
@@ -85,8 +86,21 @@ Route::group(['middleware' =>['AuthCheck']], function(){
     Route::get('/user-dashboard', [StudentRegistrationController::class, 'user_dashboard'])->name('user_dashboard');
     //BR panel
     Route::get('/BR-panel', [StudentRegistrationController::class, 'br_panel'])->name('br_panel');
+    //Br list view
+    Route::get('/Br-List', [StudentRegistrationController::class, 'br_list'])->name('br_list');
+    //Member list view
+    Route::get('Member-List', [StudentRegistrationController::class, 'member_list'])->name('member_list');
+    //Batchmates view
+    Route::get('/batchmates', [StudentRegistrationController::class, 'batchmates'])->name('batchmates');
 
 });
+
+//Public BR List
+Route::get('/public/BR', [StudentRegistrationController::class, 'public_br'])->name('public_br');
+
+
+//Public Admin&Modetarator List
+Route::get('/public/admin', [StudentRegistrationController::class, 'public_admin'])->name('public_admin');
 
 
 

@@ -75,13 +75,15 @@
                         <textarea name="permanent_address" id="ParmanentAddress" class="form-control" ></textarea><br>
 
                         <label>Position</label></br>
-                        <input type="text" name="position" id="Position" class="form-control"  placeholder="Ex. Teacher, Head Teacher etc."><br/>
+                        <input type="text" name="position" id="Position" class="form-control"  placeholder="Ex. Teacher, Head Teacher etc."><br/><span style="color: red;">Ex. Teacher, Head Teacher etc.</span><br/><br/>
+                        <label>Teaching Years</label></br>
+                        <input type="text" name="teaching_years" id="teaching_years" class="form-control"  placeholder="Ex. 1995-2010, 2012- Present etc."><span style="color: red;">Ex. 1995-2010, 2012- Present etc.</span><br/><br/>
                         <label>Status</label></br>
                         <select name="status" id="status" class="form-control" >
                             <option value="">Select Status</option>
-                            <option value="Late">Late</option>
-                            <option value="Retired">Retired</option>
-                            <option value="Present">Present</option>
+                            <option value="0">Late</option>
+                            <option value="1">Retired</option>
+                            <option value="2">Present</option>
                         </select><br>
                         <label>Are you Ex student of SGHS?</label></br>
                         <select name="sghs" id="status" class="form-control" >
@@ -98,7 +100,7 @@
                                 echo "<option>$i</option>";
                             }
                             ?>
-                        </select><br>
+                        </select><br><span style="color: red;">This is not Mandatory</span><br/><br/>
                         <label>Photo</label></br>
                         <input type="file" accept="image/*" id="FilePath" name="photo"><br><span style="color: red;">*Not more than 512 kb</span><br><br>
 

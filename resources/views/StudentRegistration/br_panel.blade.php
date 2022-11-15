@@ -1,6 +1,6 @@
 @extends('Home.app')
 @section('title')
-    My Profile
+    My Profile | BR- Panel
 @endsection
 @section('content')
     <div class="row row-xs mg-b-25">
@@ -15,8 +15,8 @@
                     </div>
                     <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('user_dashboard') }}">Profile</a>&nbsp;&nbsp;&nbsp;
                     <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('br_list') }}">BR List</a>&nbsp;&nbsp;&nbsp;
-                    <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="#">Batchmates</a>&nbsp;&nbsp;&nbsp;
-                    <!--<a class="w-100 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('member_list') }}">Teacher List</a>-->
+                    <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('batchmates') }}">Batchmates</a>&nbsp;&nbsp;&nbsp;
+                    <a class="w-100 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('member_list') }}">Member List</a>&nbsp;&nbsp;&nbsp;
                     @if($loginginfo->br_status != NULL or 0)
                     <a class="w-25 tx-11 font-weight-bold mg-b- mg-t-0 text-dark" href="{{ route('br_panel') }}">BR Panel</a>
                     @endif

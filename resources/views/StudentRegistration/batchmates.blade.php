@@ -1,9 +1,10 @@
 @extends('Home.app')
 @section('title')
-    My Profile | BR-List
+    My Profile | Batchmates
 @endsection
 @section('content')
-<div class="row row-xs mg-b-25">
+<div class="container">
+    <div class="row row-xs mg-b-25">
         <div class="package-buttons w-100 pd-l-5 pd-r-10 pd-b-15 pd-t-15 bg-light border-bottom">
             <div class="d-flex w-100 align-items-center">
                 <div class="container-fluid">
@@ -23,55 +24,48 @@
                 </div>
             </div>
         </div>
-</div>
-        <br/><br/>
-            <div class="container">
-              <div style="overflow-x: auto">
-                      <table id="example" class="table table-bordered sortable" style="">
-            
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Batch</th>
-                                <th>shift</th>
-                                <th>Name</th>
-                                <th>Number</th>
-                                <!--<th>Profession</th>-->
-                                <!--<th>B/G</th>-->
-                                <!--<th>Date of birth</th>-->
-                                <!--<th>Present Address</th>-->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $sl=1;
-                            @endphp
-                            @foreach($all_br as $br_list)
-                            @if($br_list->br_status == 1)
-                            <tr>
-                                <td>{{ $sl++ }}</td>
-                                <td>{{ $br_list->Batch }}</td>
-                                <td>{{ $br_list->shift }}</td>
-                                <td>{{ $br_list->FullName }}</td>
-                                <td>{{ $br_list->PhoneNumber }}</td>
-                    
-                                <!--<td>{{ $br_list->Profession }}</td>-->
-                    
-                    
-                                <!--<td>{{ $br_list->BloodGroup }}</td>-->
-                    
-                                <!--<td>{{ $br_list->DoB }}</td>-->
-                    
-                                <!--<td>{{ $br_list->PresentAddress }}</td>-->
-                            
-                            </tr>
-                            @endif
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-             </div>
+    </div>
+
         
+        </h5><br/><br/>
+        <div class="container">
+          <div style="overflow-x: auto">
+          <table id="example" class="table table-bordered" style="">
+
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Batch</th>
+                <th>shift</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Profession</th>
+                <th>B/G</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+            $sl=1;
+            @endphp
+            @foreach($all_batchmates as $members)
+            @if($members->status == 1 && $loginginfo->Batch == $members->Batch)
+            <tr>
+                <td>{{ $sl++ }}</td>
+                <td>{{ $members->Batch }}</td>
+                <td>{{ $members->shift }}</td>
+                <td>{{ $members->FullName }}</td>
+                <td>{{ $members->PhoneNumber }}</td>
+                <td>{{ $members->Profession }}</td>
+                <td>{{ $members->BloodGroup }}</td>
+            
+            </tr>
+            @endif
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+    </div>
+        </div>
         
         <!--<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>-->
         <!--<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>-->
@@ -79,6 +73,17 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>-->
         <!--<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>-->
         <!--<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>-->
-        
+        <script>
+            function printDiv(divName) {
+              var printContents = document.getElementById(divName).innerHTML;
+              var originalContents = document.body.innerHTML;
+  
+              document.body.innerHTML = printContents;
+  
+              window.print();
+  
+              document.body.innerHTML = originalContents;
+          }
+          </script>
         
 @endsection

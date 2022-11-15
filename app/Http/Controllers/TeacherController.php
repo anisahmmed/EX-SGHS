@@ -19,16 +19,17 @@ class TeacherController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'phone' => 'required|unique:teacher|digits:11',
+            'phone' => 'required|digits:11',
             'email' => 'required|email',
             'gender' => 'required',
             'present_address' => 'required|max:255',
             'permanent_address' => 'required|max:255',
             'position' => 'required',
+            'teaching_years' => 'required',
             'status' => 'required',
             'sghs' => 'required',
             // 'batch' => $request->batch,
-            'photo' => 'image|max:512',
+            'photo' => 'required|image|max:512',
         ]);
         
             $teacher = new Teacher;
@@ -40,6 +41,7 @@ class TeacherController extends Controller
             $teacher->present_address = $request->present_address;
             $teacher->permanent_address = $request->permanent_address;
             $teacher->position = $request->position;
+            $teacher->teaching_years = $request->teaching_years;
             $teacher->status = $request->status;
             $teacher->sghs_status = $request->sghs;
             $teacher->batch = $request->batch;
@@ -48,7 +50,7 @@ class TeacherController extends Controller
                 $file = $request->file('photo');
                 $extention = $file->getClientOriginalExtension();
                 $filename = $no.'.'.$extention;
-                $file->move('uploads/teachers/', $filename);
+                $file->move('Uploads/teachers/', $filename);
                 $teacher->picture = $filename;
             }
         $teacher->save();
@@ -89,5 +91,12 @@ class TeacherController extends Controller
     function success_message()
     {
         return view('teacher.success');
+    }
+    
+    //public teacher view
+    function public_teacher(){
+        $all_teachers = Teacher::orderBy('status', 'ASC')->get();
+        return view('teacher.public_teacher_view', compact('all_teachers'));
+        
     }
 }

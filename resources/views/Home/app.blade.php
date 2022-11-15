@@ -97,10 +97,20 @@
     
     <!-- SGHS CSS -->
     <link rel="stylesheet" href="/assets/css/apec.css?<?php echo strtotime(date('Y-m-d H:i:s')) . '' . rand(1000,9999); ?>">
-    
+    <style>
+        /*#preloader{*/
+        /*    background: #333;*/
+        /*    height: 100vh;*/
+        /*    width: 100%;*/
+        /*    position: fixed;*/
+        /*    z-index: 100;*/
+            
+        /*}*/
+    </style>
     
   </head>
   <body>
+        <!--<div id="preloader"></div>-->
     <aside class="aside aside-fixed">
         <div class="aside-header">
           <a href="https://reg.ex-students-sghs.org" title="Ex-SGHS" class="aside-logo"><img alt="SGHS Logo" style="background-color:black;" src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/logo-png1667227905.png" /></a>
@@ -132,8 +142,9 @@
              
               <li class="nav-item  active"><a href="https://sghss.edu.bd/" class="nav-link"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">About SGHS</span></a></li>
               <li class="nav-item  active"><a href="https://ex-students-sghs.org/" class="nav-link"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">About EX-SGHS</span></a></li>
-              <li class="nav-item  active"><a href="https://ex-students-sghs.org/committee" class="nav-link"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">Commitee</span></a></li>
-              <li class="nav-item active"><a href="https://ex-students-sghs.org/old_reg/widget.php?key=10222x0475efa745" class="nav-link font-weight-bold"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">BR List</span></a></li>
+              <li class="nav-item  active"><a href="{{ route('public_teacher') }}" class="nav-link"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">SGHS Teachers</span></a></li>
+              <li class="nav-item  active"><a href="{{ route('public_admin') }}" class="nav-link"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">Admin List</span></a></li>
+              <li class="nav-item active"><a href="{{ route('public_br') }}" class="nav-link font-weight-bold"><img src="https://ex-students-sghs.org/old_website/assets/uploads/media-uploader/screenshot-41667242655.png" class="category-images" /> <span class="lang_en">BR List</span></a></li>
               
     
               <li class="nav-label mg-t-20"></li>
@@ -195,7 +206,7 @@
                       </li>
                       
                       <li class="nav__item">
-                          <a href="#" class="nav__link active-link">
+                          <a href="{{ route('public_br') }}" class="nav__link active-link">
                               <i class="nav__icon" data-feather="percent"></i>
                               <span class="nav__name">BR List</span>
                           </a>
@@ -449,7 +460,7 @@
               </a>
             </li>
             <li class="list-group-item">
-              <a href="#" class="d-flex align-items-center">
+              <a href="{{ route('public_br') }}" class="d-flex align-items-center">
                 <i class="fas fa-plus tx-9 mr-2 text-secondary"></i>
                 <p class="flex-grow-1 tx-12 mg-b-0">BR List</p>
                 <i class="fas fa-arrow-right ml-2"></i>
