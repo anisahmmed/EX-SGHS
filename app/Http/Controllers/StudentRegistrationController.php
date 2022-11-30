@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use shurjopayv2\ShurjopayLaravelPackage8\Http\Controllers\ShurjopayController;
+use Illuminate\Support\Facades\DB;
+
 
 class StudentRegistrationController extends Controller
 {
@@ -597,6 +599,18 @@ class StudentRegistrationController extends Controller
           $all_public_admin = students::orderBy('Batch', 'ASC')->get();
           return view('public_admin_list', compact('all_public_admin'));
       }
+
+      public function line_chart()
+    {
+        $result = DB::select(DB::raw("SELECT DISTINCT Batch,count(*) as Total from students group by Batch desc limit 5"));
+        $data = "";
+        foreach($result as $val){
+            
+            $data.= "[".$val->Batch.",".$val->Total."],";
+        }
+        // dd($data);
+        return view('Home.line_chart',compact('data'));
+    }
 
 
 }

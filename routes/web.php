@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentRegistrationController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\DB;
 
 
  
@@ -21,8 +22,16 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('Home.Index');
+    $result = DB::select(DB::raw("SELECT DISTINCT Batch,count(*) as Total from students where students.status = 1 group by Batch desc limit 5"));
+        $data = "";
+        foreach($result as $val){
+            
+            $data.= "[".$val->Batch.",".$val->Total."],";
+        }
+    // dd($data);
+    return view('Home.Index',compact('data'));
 });
+Route::get('/line-chart', [StudentRegistrationController::class, 'line_chart']);
 //Route::get('/', 'App\Http\Controllers\HomeController@Index');
 Route::get('/Home', 'App\Http\Controllers\HomeController@Index');
 //Route::get('/Registration', 'App\Http\Controllers\StudentRegistrationController@create');

@@ -108,6 +108,8 @@
         /*}*/
     </style>
     
+    
+    
   </head>
   <body>
         <!--<div id="preloader"></div>-->
@@ -577,10 +579,9 @@
     <!-- append main js file -->
     <script src="/assets/js/apec.js?<?php echo strtotime(date('Y-m-d H:i:s')) . '' . rand(1000,9999); ?>"></script>
     
-    <script type="text/javascript">
 
-
-    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
  
   </body>
 </html>

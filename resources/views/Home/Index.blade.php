@@ -4,6 +4,7 @@
 @endsection
 @section('content')       
         
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div class="container">
           
             <div class="row row-xs mg-b-25">
@@ -52,6 +53,34 @@
                     </div>
                     
                     <div class="w-100 d-block">
+                        <div class="col-12">
+                            <div class="w-100 mg-b-20 mg-t-0 text-center d-block card rounded-10">
+                                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                <script type="text/javascript">
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawChart);
+                            
+                                    function drawChart() {
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Batch', 'Total'],
+                                        {{$data}}
+                                    ]);
+                            
+                                    var options = {
+                                        title: 'Diamond Jobilee Registration',
+                                        curveType: 'function',
+                                        legend: { position: 'bottom' }
+                                    };
+                            
+                                    var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart'));
+                            
+                                    chart.draw(data, options);
+                                    }
+                                </script>
+                                
+                                <div id="curve_chart" style=" text-align: center; width: 900px; height: 500px"></div>
+                            </div>
+                        </div>
             
                       <!--  <div class="col-12">
             
@@ -321,11 +350,6 @@
                             </div>
                         
                         </div>
-                        
-                        
-                        
-                        
-                        
                         
                         
                         
