@@ -1,27 +1,26 @@
-@extends('StudentRegistration.layout')
+@extends('Admin.master')
 @section('title')
     Edit Registered Student
 @endsection
 @section('content')
-<style>
-        /*body{*/
-        /*    background-color: #87E7B6!important;*/
-    
-        /*}*/
-       
-    </style>
-    
-    <head>
       
    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    </head>
+    
+    <a class="btn btn-primary" href="{{ route('registration_report') }}">Back</a>
+
 <div style="margin-top: 1%;">
 <div class="col d-flex justify-content-center">
-
     <div class="card col-md-5">
-        <div class="card-header"><h3>Registration Form</h3></div>
+        <div class="card-header"><h3>Edit Registered Student Info</h3></div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @if(session('success'))
         <div class="alert alert-success">
             {{session('success')}}
@@ -54,11 +53,12 @@
             </div> -->
             <div class="card-body" style="background-color:aliceblue;">
                 
-                <form class="needs-validation" id="my_form" enctype="multipart/form-data" action="addStudent" method="post" novalidate>
+                <form class="needs-validation" id="my_form" enctype="multipart/form-data" action="{{ route('registered_student_update') }}" method="post" novalidate>
                     @csrf
                     <div id="MainForm">
                         <label>Batch</label></br>
                         <select  class="form-control js-example-basic-multiple" id="Batch" name="Batch" required>
+                            <option class="bg-primary text-white" value="{{$single_student_info->Batch}}">{{$single_student_info->Batch}}</option>
                             <option value="">Select Batch</option>
                             <?php 
                             
@@ -67,8 +67,10 @@
                             }
                             ?>
                         </select><br>
+                        <input type="text" name="id" value="{{ $single_student_info->id }}" hidden>
                         <label>Shift</label></br>
                         <select name="shift" class="form-control suk-select-field" id="shift" tabindex="-1" aria-hidden="true" required>
+                                    <option class="bg-primary text-white" value="{{$single_student_info->shift}}">{{$single_student_info->shift}}</option>
                                     <option value="">Select Shift</option>
                                     <option value="NotApplicable">Not Applicable</option>
                                     <option value="Morning">Morning</option>
@@ -76,17 +78,18 @@
                                     
                                 </select><br>
                         <label>Full Name</label></br>
-                        <input type="text" name="FullName" id="FullName" class="form-control" required></br>
+                        <input type="text" name="FullName" id="FullName" class="form-control" value="{{ $single_student_info->FullName }}" required></br>
                         <label>Phone No</label>
-                        <input type="number" name="PhoneNumber" id="PhoneNumber" class="form-control" required></br>
+                        <input type="number" name="PhoneNumber" id="PhoneNumber" class="form-control" value="{{ $single_student_info->PhoneNumber }}" required></br>
                         <label>Email</label></br>
-                        <input type="email" name="Email" id="Email" class="form-control" required></br>
+                        <input type="email" name="Email" id="Email" class="form-control" value="{{ $single_student_info->Email }}" required></br>
                         <label>Profession</label></br>
-                        <input type="text" name="Profession" id="Profession" class="form-control" required></br>
+                        <input type="text" name="Profession" id="Profession" class="form-control" value="{{ $single_student_info->Profession }}" required></br>
                         <label>Profession Details</label></br>
-                        <input type="text" name="ProfessionDetails" id="ProfessionDetails" class="form-control" required></br>
+                        <input type="text" name="ProfessionDetails" id="ProfessionDetails" class="form-control" value="{{ $single_student_info->ProfessionDetails }}" required></br>
                         <label>Blood Group</label></br>
                         <select name="BloodGroup" id="BloodGroup" class="form-control" required>
+                            <option class="bg-primary text-white" value="{{ $single_student_info->BloodGroup }}">{{ $single_student_info->BloodGroup }}</option>
                             <option value="">Select group</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
@@ -98,82 +101,17 @@
                             <option value="AB-">AB-</option>
                         </select><br>
                         <!-- <input type="text" name="BloodGroup" id="BloodGroup" class="form-control" required></br> -->
-                        <label>Date Of Birth</label></br>
-                        <div class="row">
-                            <div class="col-3 col-md-3 mob-mb-15">
-                                <select name="dob_day" class="form-control suk-select-field day" id="basic_dob_day" tabindex="-1" aria-hidden="true" required>
-                                    <option value="">Day</option>
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
-                                </select>
-                            </div>
-                            <div class="col-md-5 col-5 mob-mb-15">
-                                <select name="dob_month" class="form-control suk-select-field" id="basic_dob_month" tabindex="-1" aria-hidden="true" required>
-                                    <option value="">Month</option>
-                                    <option value="01">January</option>
-                                    <option value="02">February</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
-                            </div>
-                            <div class="col-4 col-md-4 mob-mb-2">
-                                <select name="dob_year" class="form-control js-example-basic-multiple" id="basic_dob_year" tabindex="-1" aria-hidden="true" required>
-                                    <option value="">Year</option>
-                                    <?php  
-                                    for($i = 1920 ; $i <= 2010; $i++){
-                                        echo "<option value".strval( $i ).">$i</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            </div>
-                        <input type="text" name="DoB" id="DoB" class="form-control" hidden></br>
+                        
+                        {{-- <input type="text" name="DoB" id="DoB" class="form-control" hidden></br> --}}
                         <label>Present Address</label></br>
-                        <textarea name="PresentAddress" id="PresentAddress" class="form-control" required></textarea></br>
+                        <textarea name="PresentAddress" id="PresentAddress" class="form-control" required>{{ $single_student_info->PresentAddress }}</textarea></br>
                         <label>Permanent Address</label></br>
-                        <textarea name="ParmanentAddress" id="ParmanentAddress" class="form-control" required></textarea><br>
-                        <label>Product</label></br>
-                        <input type="text" name="Product" id="Product" class="form-control" value="Polo T Shirt" required readonly></br>
+                        <textarea name="ParmanentAddress" id="ParmanentAddress" class="form-control" required>{{ $single_student_info->ParmanentAddress }}</textarea><br>
+                        
                         <!-- <input type="text" name="address" id="address" class="form-control"></br> -->
                         <label>Size</label></br>
                         <select name="Size" class="form-control suk-select-field" id="Size" tabindex="-1" aria-hidden="true" required>
+                                    <option class="bg-primary text-white" value="{{ $single_student_info->Size }}">{{ $single_student_info->Size }}</option>
                                     <option value="">Select Size</option>
                                     <option value="S">S (Small)</option>
                                     <option value="M">M (Medium)</option>
@@ -184,22 +122,19 @@
                                 </select><br>
                                 
                         <!-- <input type="text" name="Size" id="Size" class="form-control" required></br> -->
-                        <label>Amount</label></br>
+                        {{-- <label>Amount</label></br>
                         <input type="text" name="Amount" id="Amount" class="form-control" required readonly>
-                        </br>
+                        </br> --}}
 
-                        <label>Amount for Donation</label></br>
-                        <input type="text" name="AmountExt" id="AmountExt" class="form-control"><span style="color: red;">*This is non mandatory field</span><br><br>
+                        {{-- <label>Amount for Donation</label></br>
+                        <input type="text" name="AmountExt" id="AmountExt" class="form-control"><span style="color: red;">*This is non mandatory field</span><br><br> --}}
                         
                         <label>Photo</label></br>
                         <input type="file" accept="image/*" id="FilePath" name="FilePath"><br><span style="color: red;">*Not more than 512 kb</span><br><br>
-                        <input type="text" name="Notes" id="Notes" value="n/a" class="form-control" hidden></br>
-                        <input type="text" name="UserId" id="UserId" value="n/a" class="form-control" hidden></br>
-                    </div>
-                    <input type="button" value="Click for Next" class="btn btn-primary" id="next" >
-                    <input type="button" value="Back" class="btn btn-primary" id="back" >
+                        <img src="{{ asset('uploads/'.$single_student_info->FilePath) }}" width="70" width="70" alt="">
+                    </div></br>
                     
-                    <input id="submit" type="submit" value="Process for payment" class="btn btn-success"></br>
+                    <input id="submit" type="submit" value="Save Changes" class="btn btn-success"></br>
                 </form>
             
             </div>
@@ -210,7 +145,7 @@
     $(document).ready(function() {
         $("#back").hide();
         $("#Summary").hide();
-        $("#submit").hide();
+        // $("#submit").hide();
         next.onclick= evt => {
             $("#back").show();
             $("#Summary").show();
@@ -304,5 +239,7 @@
     }
     
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @stop

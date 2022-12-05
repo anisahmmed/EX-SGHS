@@ -70,11 +70,13 @@ Route::get('/registration-confirmation', [TeacherController::class, 'success_mes
 Route::get('/public/teacher/view', [TeacherController::class, 'public_teacher'])->name('public_teacher');
 
 //Admin Dashboard view
-Route::get('/Dashboard', [AdminController::class, 'dashboard_index'])->name('dashboard_index');
+Route::get('/admin', [AdminController::class, 'dashboard_index'])->name('dashboard_index');
 //Student registration report
 Route::get('/Registration-report', [AdminController::class, 'registration_report'])->name('registration_report');
 //Edit registered student
 Route::get('/registered-student-edit/{id}', [AdminController::class, 'student_edit'])->name('student_edit');
+//Update registered student info
+Route::post('/registered-student-update', [AdminController::class, 'registered_student_update'])->name('registered_student_update');
 //Student detail for making BR
 Route::get('/registered-student-detail-for-BR', [AdminController::class, 'student_detail'])->name('student_detail');
 //Edit br status
@@ -115,7 +117,7 @@ Route::get('/public/admin', [StudentRegistrationController::class, 'public_admin
 
 
 
-Route::get('/Admin', [StudentRegistrationController::class, 'Admin']);
+// Route::get('/Admin', [StudentRegistrationController::class, 'Admin']);
 Route::POST('/AdminSubmit', [StudentRegistrationController::class, 'AdminSubmit']);
 
 Route::get('/ForgotPasswordView', [StudentRegistrationController::class, 'ForgotPasswordView']);
